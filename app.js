@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('request');
 var _ = require('lodash');
 
-var eventBriteToken = process.env.EVENTBRITE_TOKEN
+var eventBriteToken = process.env.EVENTBRITE_TOKEN;
 
 var app = express();
 app.set('json spaces', 2);
@@ -13,13 +13,10 @@ app.get('/events', function (req, res) {
   request('https://www.eventbriteapi.com/v3/users/me/owned_events?token=' + eventBriteToken + '&status=live', function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body).events;
+
       var eventData = _.map(events, function(event) {
-        var monthNames = [
-          "January", "February", "March",
-          "April", "May", "June", "July",
-          "August", "September", "October",
-          "November", "December"
-        ];
+
+        var monthNames = ["January", "February", "March","April", "May", "June", "July","August", "September", "October","November", "December"];
 
         function padLeft(nr, n, str){
           return Array(n-String(nr).length+1).join(str||'0')+nr;
@@ -47,5 +44,5 @@ app.get('/events', function (req, res) {
 });
 
 app.listen(8080, function () {
-  console.log('Example app listening on port 8080!');
+  console.log('App listening on port 8080!');
 });
