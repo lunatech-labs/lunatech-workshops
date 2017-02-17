@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 1. Load webcomponents-lite.min.js for polyfill support. -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+
+    <!-- 2. Use an HTML Import to bring in some elements. -->
+    <link rel="import" href="bower_components/iron-elements/iron-elements.html">
+    <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="bower_components/polymer-themes/citric-flames.html">
+    <style>
+
+
+  div.main {
+  max-width: 1080px;
+  margin: 0 auto !important;
+  float: none !important;
+  text-align: center;
+  }
+
+  paper-card {
+    margin:20px;
+    max-width: 400px;
+  }
+
+  paper-button a {
+    text-decoration: none;
+  }
+
+  .workshop-description {
+    height: 70px;
+  }
+
+  .card-actions paper-button,
+  .card-actions paper-icon-button {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  </style>
+  </head>
+  <body>
+    <div class="main">
+
+    <div><section hero id="theme-info"><h1>Lunatech Workshops</h1>
+
+  <dom-module id="event-list">
+    <template>
+      <iron-ajax auto url="/events" last-response="{{events}}"></iron-ajax>
+
+      <template is="dom-repeat" items="{{events}}">
+        <paper-card image="{{item.logoUrl}}">
+          <div class="card-content">
+            <h2>{{item.name}}</h2>
+            <div class="workshop-description">{{item.description}}</div>
+          </div>
+          <div class="card-actions">
+            <div class="horizontal justified">
+              <paper-icon-button icon="icons:event"></paper-icon-button>
+              <paper-button>{{item.date}}</paper-button>
+              <paper-button>{{item.startTime}}</paper-button> - 
+              <paper-button>{{item.endTime}}</paper-button>
+              <paper-button noink>
+                <a href="{{item.url}}#tickets">Register</a>
+              </paper-button>
+            </div>
+          </div>
+        </paper-card>
+      </template>
+    </template>
+  </dom-module>
+  <script>
+      Polymer({
+          is: "event-list"
+      });
+  </script>
+
+  <event-list>
+  </div>
+  </body>
+</html>

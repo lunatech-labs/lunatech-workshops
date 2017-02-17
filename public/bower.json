@@ -1,0 +1,25 @@
+{
+  "name": "workshops-overview",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Erik Bakker <erik.bakker@lunatech.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.10",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "polymer-themes": "^1.0.1",
+    "polymer": "^1.8.0"
+  }
+}
