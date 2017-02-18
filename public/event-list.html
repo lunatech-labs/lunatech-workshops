@@ -1,0 +1,35 @@
+<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="bower_components/paper-card/paper-card.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="event-list">
+  <template>
+    <iron-ajax auto url="/events" last-response="{{events}}"></iron-ajax>
+
+    <template is="dom-repeat" items="{{events}}">
+      <paper-card image="{{item.logoUrl}}">
+        <div class="card-content">
+          <h2>{{item.name}}</h2>
+          <div class="workshop-description">{{item.description}}</div>
+        </div>
+        <div class="card-actions">
+          <div class="horizontal justified">
+            <paper-icon-button icon="icons:event"></paper-icon-button>
+            <paper-button>{{item.date}}</paper-button>
+            <paper-button>{{item.startTime}}</paper-button> -
+            <paper-button>{{item.endTime}}</paper-button>
+            <paper-button noink>
+              <a href="{{item.url}}#tickets">Register</a>
+            </paper-button>
+          </div>
+        </div>
+      </paper-card>
+    </template>
+  </template>
+</dom-module>
+<script>
+    Polymer({
+        is: "event-list"
+    });
+</script>
