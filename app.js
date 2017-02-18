@@ -33,7 +33,7 @@ app.get('/events', function (req, res) {
           date: monthNames[startDate.getMonth()] + " " + startDate.getDate(),
           startTime: startDate.getHours() + ":" + padLeft(startDate.getMinutes(), 2),
           endTime: endDate.getHours() + ":" + padLeft(endDate.getMinutes(), 2)
-        }
+        };
 
       });
       res.json(eventData);
