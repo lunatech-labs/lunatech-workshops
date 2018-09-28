@@ -25,6 +25,21 @@ app.get('/events', function(req, res) {
             return Array(n - String(nr).length + 1).join(str || '0') + nr;
           }
 
+
+          var location;
+          console.log("Event Description Text: ", event.description.text);
+
+var lcDesc = event.description.text.toLowerCase();
+          console.log("lcDesc", lcDesc);
+
+          if(lcDesc.indexOf('amsterdam') > -1){
+            location = "Amsterdam";
+          } else if(lcDesc.indexOf('rotterdam') > -1){
+            location = "Rotterdam";
+          } else {
+            location = "See Details"
+          }
+
           var startDate = new Date(event.start.local);
           var endDate = new Date(event.end.local);
 
@@ -34,8 +49,9 @@ app.get('/events', function(req, res) {
             url: event.vanity_url ? event.vanity_url : event.url,
             logoUrl: event.logo ? event.logo.url : null,
             date: monthNames[startDate.getMonth()] + " " + startDate.getDate(),
-            startTime: startDate.getHours() + ":" + padLeft(startDate.getMinutes(), 2),
-            endTime: endDate.getHours() + ":" + padLeft(endDate.getMinutes(), 2),
+            // startTime: startDate.getHours() + ":" + padLeft(startDate.getMinutes(), 2),
+            // endTime: endDate.getHours() + ":" + padLeft(endDate.getMinutes(), 2),
+            location: location,
             totalTickets: ticket.quantity_total,
             availableTickets: ticket.quantity_total - ticket.quantity_sold
           }

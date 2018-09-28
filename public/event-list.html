@@ -11,14 +11,13 @@
       <paper-card image="{{item.logoUrl}}">
         <div class="card-content">
           <h2>{{item.name}}</h2>
-          <div class="workshop-description">{{item.description}}</div>
+          <div class="workshop-description" style="overflow: hidden;">{{item.description}}</div>
         </div>
         <div class="card-actions">
           <div class="horizontal justified">
             <paper-icon-button icon="icons:event"></paper-icon-button>
             <paper-button>{{item.date}}</paper-button>
-            <paper-button>{{item.startTime}}</paper-button> -
-            <paper-button>{{item.endTime}}</paper-button>
+            <paper-button>{{item.location}}</paper-button>
             <paper-button>{{item.availableTickets}}/{{item.totalTickets}} tickets</paper-button>
             <paper-button noink>
               <a href="{{item.url}}">More info &amp; Register</a>
