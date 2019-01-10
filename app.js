@@ -15,6 +15,9 @@ app.get('/events', function(req, res) {
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body).events;
 
+      // Ugly hack to hide the bowling tournament
+      events = events.filter(function(event) { return event.id != "54580110580"; });
+
       async.map(events, function(event, callback) {
         request('https://www.eventbriteapi.com/v3/events/' + event.id + '/ticket_classes/?token=' + eventBriteToken, function(error, response, body) {
           var ticket = JSON.parse(body).ticket_classes[0];
