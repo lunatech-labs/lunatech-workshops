@@ -2,6 +2,7 @@ var express = require('express');
 var request = require('request');
 var async = require('async');
 var _ = require('lodash');
+var enforce = require('express-sslify');
 
 var eventBriteToken = process.env.EVENTBRITE_TOKEN;
 
@@ -9,6 +10,7 @@ var app = express();
 app.set('json spaces', 2);
 
 app.use(express.static('public'))
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 app.get('/events', function(req, res) {
   request('https://www.eventbriteapi.com/v3/users/me/owned_events?token=' + eventBriteToken + '&status=live', function(error, response, body) {
