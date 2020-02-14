@@ -9,8 +9,11 @@ var eventBriteToken = process.env.EVENTBRITE_TOKEN;
 var app = express();
 app.set('json spaces', 2);
 
+if (process.env.HTTPS === "true") {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
+}
+
 app.use(express.static('public'))
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 app.get('/events', function(req, res) {
   request('https://www.eventbriteapi.com/v3/users/me/owned_events?token=' + eventBriteToken + '&status=live', function(error, response, body) {
