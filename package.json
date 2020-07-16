@@ -12,7 +12,7 @@
     "async": "^2.1.5",
     "express": "^4.17.1",
     "express-sslify": "^1.2.0",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "request": "^2.83.0"
   }
 }
